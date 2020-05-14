@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://vikonter.ru/file.css" rel="stylesheet">
+    <link href="../../static/images/logo.png" rel="shortcut icon">
+    <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script>
+        $('document').ready(function () {
+            opened_popups = 0;
+            EmailHide();
+            $('body').animate({opacity: 1,}, 500);
+        });
+
+        function ChooseOverflow() {
+            if (opened_popups > 0) {
+                $(".popup").css({"overflow": "auto"});
+                $('body').css({"overflow": "hidden"});
+            } else {
+                $('body').css({"overflow": "auto"});
+                $('.popup').css({"overflow": "hidden"});
+            }
+        }
+
+    function EmailShow() {
+        $("#email_popup").show();
+        $('#email_popup').animate({opacity: 1,}, 200);
+        opened_popups += 1;
+        ChooseOverflow();
+    }
+
+    function EmailHide() {
+        $("#email_popup").hide();
+        $('#email_popup').css("opacity", "0");
+        opened_popups -= 1;
+        ChooseOverflow();
+    }
+    </script>
+</head>
+<body>
+<div class="popup" id="email_popup" style="display: block; opacity: 1;">
+    <div class="block" style="height: auto; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
+        <h1 style="text-align: center;">Почтовый адрес<a href="javascript:EmailHide()"><img class="icon" style="position: absolute; right: 40px;" src="../../static/images/close.png"></a></h1><br>
+        <p style="text-align: center;">info@vikonter.ru</p>
+    </div>
+</div>
+
+{% if header == 1 %}
+<div class="block flexbox">
+    <div class="flexbox_left">
+        <a href="{{base_url}}"><img src="../../static/images/name.png" height="50px" alt="Логотип"></a>
+    </div>
+    <div class="flexbox_right">
+
+    </div>
+</div>
+{% endif %}
+
+<div class="block">
+    {% block content %}{% endblock %}
+</div>
+
+<div class="block flexbox">
+    <div class="flexbox_left">
+        <span>© <a href="https://vikonter.ru/" class="link" target="_blank">Vigenpm Web Production</a>, 2019</span>
+    </div>
+    <div class="flexbox_right">
+    	<a onclick="EmailShow()"><div><img src="../../static/images/email.png" style="width: 35px;" class="icon"></div></a>
+    </div>
+</div>
+</body>
+</html>
