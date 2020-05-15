@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">Войти</h1><br>
+<form action="" method="post" style="text-align: center;">
+    {{ form.hidden_tag() }}
+    <table class="infotable">
+        <tr>
+            <td><span>{{ form.email.label }}</span></td>
+            <td>{{ form.email(class="textarea", type="email") }}</td>
+        </tr>
+        {% for error in form.email.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+        <tr>
+            <td><span>{{ form.password.label }}</span></td>
+            <td>{{ form.password(class="textarea", type="password") }}</td>
+        </tr>
+        {% for error in form.password.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </table>
+    <br>
+    <p style="margin: 21px;">{{ form.submit(type="submit", class="button") }}</p>
+</form>
+<p style="text-align: center;"><a href="{{base_url}}/register" class="link">Зарегистрироваться</a></p>
+<p>{{message}}</p>
+{% endblock %}

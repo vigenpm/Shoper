@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">Добавить товар</h1><br>
+<form action="" method="post" style="text-align: center;">
+    {{ form.hidden_tag() }}
+    <table class="infotable">
+        <tr>
+            <td><span>{{ form.name.label }}</span></td>
+            <td>{{ form.name(class="textarea") }}
+            </td>
+        </tr>
+        {% for error in form.name.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+        <tr>
+            <td><span>{{ form.image.label }}</span></td>
+            <td>{{ form.image(class="textarea") }}</td>
+        </tr>
+        {% for error in form.image.errors %}
+        <p class="alert alert-danger" role="alert">
+            {{ error }}
+        </p>
+        {% endfor %}
+    </table>
+    <p style="margin: 21px;">{{ form.submit(type="submit", class="button") }}</p>
+</form>
+{% endblock %}

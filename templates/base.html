@@ -37,12 +37,16 @@
         opened_popups -= 1;
         ChooseOverflow();
     }
+
     </script>
 </head>
 <body>
 <div class="popup" id="email_popup" style="display: block; opacity: 1;">
     <div class="block" style="height: auto; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
-        <h1 style="text-align: center;">Почтовый адрес<a href="javascript:EmailHide()"><img class="icon" style="position: absolute; right: 40px;" src="../../static/images/close.png"></a></h1><br>
+        <h1 style="text-align: center;">Почтовый адрес<a href="javascript:EmailHide()"><img class="icon"
+                                                                                            style="position: absolute; right: 40px;"
+                                                                                            src="../../static/images/close.png"></a>
+        </h1><br>
         <p style="text-align: center;">info@vikonter.ru</p>
     </div>
 </div>
@@ -53,7 +57,35 @@
         <a href="{{base_url}}"><img src="../../static/images/name.png" height="50px" alt="Логотип"></a>
     </div>
     <div class="flexbox_right">
+        {% if header == 1 %}
+        <div class="menu-block">
+            <div style="margin: 0;"><img class="icon" src="../../static/images/menu.png"></div>
+            <div class="block submenu" style="right: 80px;">
+                <ul>
+                    <h3 style="margin: 0;">
+                        <li style="background-color: unset;">Меню</li>
+                    </h3>
+                    <a href="{{base_url}}">
+                        <li>Главная</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
 
+        <div class="menu-block">
+            <div style="margin: 0;"><img class="icon" src="../../static/images/user.png"></div>
+            <div class="block submenu" style="right: 25px;">
+                <ul>
+                    <h3 style="margin: 0;">
+                        <li style="background-color: unset;">{{current_user.name}} {{current_user.surname}}</li>
+                    </h3>
+                    <a href="{{base_url}}/logout">
+                        <li>Выйти</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endif %}
@@ -67,7 +99,9 @@
         <span>© <a href="https://vikonter.ru/" class="link" target="_blank">Vigenpm Web Production</a>, 2019</span>
     </div>
     <div class="flexbox_right">
-    	<a onclick="EmailShow()"><div><img src="../../static/images/email.png" style="width: 35px;" class="icon"></div></a>
+        <a onclick="EmailShow()">
+            <div><img src="../../static/images/email.png" style="width: 35px;" class="icon"></div>
+        </a>
     </div>
 </div>
 </body>
