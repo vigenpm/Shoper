@@ -3,4 +3,4 @@
 Сайт проекта: <https://vikonter.ru/?page=shoper>
 
 
-_© Vigenpm Web Production, 2020_
+_© Vigenpm Production, 2020_
