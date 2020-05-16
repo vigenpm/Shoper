@@ -21,6 +21,7 @@ user = None
 def main():
     db_session.global_init("db/db.sqlite")
     api.add_resource(items.ItemsListResource, '/api/items')
+    api.add_resource(items.ItemsResource, '/api/items/<int:items_id>')
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -88,7 +89,15 @@ def main():
             post('http://127.0.0.1:8080/api/items',
                  json={'name': form.name.data, 'image': form.image.data, 'user_id': user.id,
                        'buyer_id': -1}).json()
-        return render_template("/add.html", title="Добавить товар | Shoper", base_url="//127.0.0.1:8080", header=1, form=form)
+        return render_template("/add.html", title="Добавить товар | Shoper", base_url="//127.0.0.1:8080", header=1,
+                               form=form)
+
+    @app.route("/my_goods")
+    @login_required
+    def my_goods():
+        items_all = get('http://127.0.0.1:8080/api/items').json()
+        print(items_all)
+        return render_template("/my_goods.html", title="Мои товары | Shoper", base_url="//127.0.0.1:8080", header=1, items_all=items_all)
 
     app.run(port=8080, host='127.0.0.1')
 
