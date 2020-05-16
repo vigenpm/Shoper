@@ -14,11 +14,11 @@ parser.add_argument('user_id', required=True, type=int)
 parser.add_argument('buyer_id', required=True, type=int)
 
 
-def abort_if_news_not_found(items_id):
+def abort_if_items_not_found(items_id):
     session = db_session.create_session()
-    news = session.query(Item).get(items_id)
-    if not news:
-        abort(404, message=f"News {items_id} not found")
+    items = session.query(Item).get(items_id)
+    if not items:
+        abort(404, message=f"Item {items_id} not found")
 
 
 class Item(SqlAlchemyBase):
@@ -34,14 +34,14 @@ class Item(SqlAlchemyBase):
 
 class ItemsResource(Resource):
     def get(self, items_id):
-        abort_if_news_not_found(items_id)
+        abort_if_items_not_found(items_id)
         session = db_session.create_session()
-        news = session.query(Item).get(items_id)
-        return jsonify({'news': news.to_dict(
+        items = session.query(Item).get(items_id)
+        return jsonify({'items': items.to_dict(
             only=('name', 'image', 'user_id', 'buyer_id'))})
 
     def delete(self, items_id):
-        abort_if_news_not_found(items_id)
+        abort_if_items_not_found(items_id)
         session = db_session.create_session()
         items = session.query(Item).get(items_id)
         session.delete(items)
