@@ -2,4 +2,7 @@
 =====================
 Сайт проекта: <https://vikonter.ru/?page=shoper>
 
-> © Vigenpm Web Production, 2020
+![](http://127.0.0.1:8080/static/images/logo.png)
+
+
+_© Vigenpm Web Production, 2020_
