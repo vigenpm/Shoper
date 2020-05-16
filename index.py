@@ -61,6 +61,7 @@ def main():
                 return render_template('register.html', title='Регистрация | Shoper',
                                        form=form,
                                        message="Такой пользователь уже есть", base_url="//127.0.0.1:8080", header=1)
+            global user
             user = User(
                 name=form.name.data,
                 surname=form.surname.data,
