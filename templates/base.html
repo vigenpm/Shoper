@@ -57,7 +57,7 @@
         <a href="{{base_url}}"><img src="../../static/images/name.png" height="50px" alt="Логотип"></a>
     </div>
     <div class="flexbox_right">
-        {% if header == 1 %}
+        {% if current_user.is_authenticated %}
         <div class="menu-block">
             <div style="margin: 0;"><img class="icon" src="../../static/images/menu.png"></div>
             <div class="block submenu" style="right: 80px;">
